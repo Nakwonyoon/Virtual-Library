@@ -31,5 +31,13 @@ module.exports = function(sequelize, DataTypes) {
       null
     );
   });
+// Associate the User with many Books from the Book table. If the user is deleted, then their books are also deleted.
+  User.associate = function(models) {
+    // Associating Author with Posts
+    // When an Author is deleted, also delete any associated Posts
+    User.hasMany(models.Book, {
+      onDelete: "cascade"
+    });
+  };
   return User;
 };
