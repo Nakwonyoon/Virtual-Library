@@ -44,9 +44,8 @@ module.exports = function(app) {
   //Add a book
   app.post("/api/mylibrary/:id", function(res, req) {
     db.Book.create({
-      where: {
-        id: req.params.id
-      }
+      
+    
     }).then(function(dbBook) {
       res.json(dbBook);
     });
