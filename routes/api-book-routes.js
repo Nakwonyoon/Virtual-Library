@@ -6,7 +6,7 @@ module.exports = function(app) {
   app.get("/api/mylibrary", function(res, req) {
     db.Book.findAll({
       where: query,
-      include: [db.Book]
+      include: [db.User]
     }).then(function(dbBook) {
       res.json(dbBook);
     });
@@ -17,7 +17,8 @@ module.exports = function(app) {
     db.Book.findAll({
       where: {
         hasBeenRead: false
-      }
+      },
+      include: [db.User]
     }).then(function(dbBook) {
       res.json(dbBook);
     });
@@ -28,7 +29,8 @@ module.exports = function(app) {
     db.Book.findAll({
       where: {
         hasBeenRead: true
-      }
+      },
+      include: [db.User]
     }).then(function(dbBook) {
       res.json(dbBook);
     });
