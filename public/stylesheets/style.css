@@ -2,3 +2,28 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+.container-fluid{
+  font-size: larger;
+  margin-top: 10px;
+  font-weight: bolder;
+}
+a {
+  text-decoration: none;
+}
+a:link, a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none; 
+}
+
+.btn{
+  display: inline-block;
+}
+
+.navbar{
+  justify-content: space-between;
+}
