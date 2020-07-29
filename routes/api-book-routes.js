@@ -1,9 +1,13 @@
 var db = require("../models");
 
 module.exports = function(app) {
+  var query = {};
   //See all of their books
   app.get("/api/mylibrary", function(res, req) {
-    db.Book.findAll({}).then(function(dbBook) {
+    db.Book.findAll({
+      where: query,
+      include: [db.Book]
+    }).then(function(dbBook) {
       res.json(dbBook);
     });
   });
@@ -43,10 +47,7 @@ module.exports = function(app) {
 
   //Add a book
   app.post("/api/mylibrary/:id", function(res, req) {
-    db.Book.create({
-      
-    
-    }).then(function(dbBook) {
+    db.Book.create(req.body).then(function(dbBook) {
       res.json(dbBook);
     });
   });
