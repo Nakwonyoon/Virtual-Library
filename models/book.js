@@ -12,6 +12,18 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         len: [1]
       },
+      publishDate: {
+          type: DataTypes.DATE,
+          allowNull: true
+      },
+      genre: {
+          type: DataTypes.STRING,
+          allowNull: false
+      },
+      synopsis: {
+          type: DataTypes.TEXT,
+          allowNull: false
+      },
       hasRead: {
           type: DataTypes.BOOLEAN
       }
