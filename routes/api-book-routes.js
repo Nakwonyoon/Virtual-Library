@@ -94,7 +94,7 @@ module.exports = function(app) {
     });
   });
 
-  //Add a book
+  //Add a book to library
   app.post("/api/mybooks", function(req, res) {
     db.Book.create(req.body).then(function(dbBook) {
       res.json(dbBook);
