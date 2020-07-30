@@ -1,29 +1,6 @@
 var db = require("../models");
 
 module.exports = function(app) {
-    //   var query = {};
-    //See all books
-    //   app.get("/api/mylibrary", function(req, res) {
-    //     db.Book.findAll({
-    //       where: query,
-    //       include: [db.User]
-    //     }).then(function(dbBook) {
-    //       res.json(dbBook);
-    //     });
-    //   });
-
-    //See a single book in my library
-    //   app.get("/api/mylibrary/:id", function(req, res) {
-    //     db.Book.findAll({
-    //       where: {
-    //         id: req.body.id
-    //       },
-    //       include: [db.User]
-    //     }).then(function(dbBook) {
-    //       res.json(dbBook);
-    //     });
-    //   });
-
   //See books "to be read" aka. the queue
   app.get("/api/myqueue", function(req, res) {
     db.Book.findAll({
