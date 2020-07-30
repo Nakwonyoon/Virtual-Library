@@ -28,3 +28,22 @@ a:hover {
   justify-content: space-between;
 }
 
+
+\\ css for homepage
+
+.button-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+.myHeader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
