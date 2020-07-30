@@ -26,4 +26,13 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
+
+  //When the user clicks on "My Library", it'll go to the MyLibrary page
+  app.get("/mybooks", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/mybooks.html"));
+  });
+  //When the user clicks on "My Queue", it'll go to the MyQueue page
+  app.get("/myqueue", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/myqueue.html"));
+  });
 };
