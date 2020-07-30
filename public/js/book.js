@@ -10,22 +10,25 @@ submit.on("click", function(event){
     });
 
 
-
-function serachByTitle(searchInput) {
-    const key = "kfqIZ6fbDX5FN0hEnk62w";
-    let url = "https://www.goodreads.com/book/title.xml?key="+ key +"&title=" + searchInput;
-  $.ajax({
-      type: "GET",
-      url : url
-  }).then((response) => {
+// 
+function serachByTitle(title, author) {
+    // const key = "kfqIZ6fbDX5FN0hEnk62w";
+    // let url = "https://www.goodreads.com/book/title.xml?key="+ key +"&title=" + searchInput;
+  $.get({
+    title : title,
+    author : author
+  }).then(() => {
+   const bookSection = $("<div></div>").addclass("bookSection");
+   bookSection.append($("#books"));
    
-    console.log(url);
-    console.log(response);
   })
+  .catch((err) => console.log(err));
 };
 
 function searchByAuthor() {
 
 }
+
+// get maping the book contents 
 
 });
