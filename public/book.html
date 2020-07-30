@@ -13,25 +13,41 @@
             <h1 class="header"> My library</h1>
         </div>
     </div>
+    <!-- Contents -->
 <div class="container">
-    <div class="row"> 
-        <div class="btn-group">
-            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Sort
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Author</a>
-              <a class="dropdown-item" href="#">Title</a>
-              <a class="dropdown-item" href="#"> By date</a>
+<!-- Search -->
+    <div class = "row">
+        <form class="form-inline">
+            <div class="search-component text-center">
+                        <select class="selection ">
+                            <option class="selection title">Title</option>
+                            <option class="selection author">Author</option>
+                        </select>
+                        <input class="form-control searchInput" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" id="searchBtn" type="submit">Search</button>
             </div>
-          </div>
-          </div>     
+        </form>    
+    </div>
+    <!-- Sorting -->
+    <div class="row sort"> 
+            <select>
+                <option class="title">Title</option>
+                <option class="author">Author</option>
+                <option class="date">By date</option>
+            </select>
+    </div>   
+     
+        <!-- book contents -->
+        <div class="row ">
+            <!-- suggest random book  gonna use carousel-->
+        </div>
+        <div class="row" id="books">
+            <!-- gonna book contents -->
+            
         </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="./js/book.js"></script>
 </body>
 </html>

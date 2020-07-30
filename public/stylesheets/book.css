@@ -15,3 +15,16 @@ a:link, a:visited {
     color: black;
     text-decoration: none; 
   }
+
+.sort{
+    padding-top: 20px;
+}
+.by{
+    padding: 15px 40px 15px 24px
+}
+.selection{
+    padding: 7px 12px;
+}
+option {
+    font-weight: bolder;
+}
