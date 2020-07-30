@@ -16,7 +16,11 @@ function serachByTitle(title, author) {
     // let url = "https://www.goodreads.com/book/title.xml?key="+ key +"&title=" + searchInput;
   $.get({
     title : title,
-    author : author
+    author : author,
+    publishDate: publishDate,
+    genre : genre,
+    synopsis :synopsis,
+    hasRead : hasRead
   }).then(() => {
    const bookSection = $("<div></div>").addclass("bookSection");
    bookSection.append($("#books"));
