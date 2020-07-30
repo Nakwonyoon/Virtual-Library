@@ -25,7 +25,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     hasRead: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      default: false
     }
   });
 
