@@ -1,22 +1,34 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  var query = {};
-  //See all of their books
-  app.get("/api/mylibrary", function(res, req) {
-    db.Book.findAll({
-      where: query,
-      include: [db.User]
-    }).then(function(dbBook) {
-      res.json(dbBook);
-    });
-  });
+    //   var query = {};
+    //See all books
+    //   app.get("/api/mylibrary", function(req, res) {
+    //     db.Book.findAll({
+    //       where: query,
+    //       include: [db.User]
+    //     }).then(function(dbBook) {
+    //       res.json(dbBook);
+    //     });
+    //   });
 
-  //See their "to be read"
-  app.get("/api/mylibrary/queue", function(res, req) {
+    //See a single book in my library
+    //   app.get("/api/mylibrary/:id", function(req, res) {
+    //     db.Book.findAll({
+    //       where: {
+    //         id: req.body.id
+    //       },
+    //       include: [db.User]
+    //     }).then(function(dbBook) {
+    //       res.json(dbBook);
+    //     });
+    //   });
+
+  //See books "to be read" aka. the queue
+  app.get("/api/myqueue", function(req, res) {
     db.Book.findAll({
       where: {
-        hasBeenRead: false
+        hasRead: false
       },
       include: [db.User]
     }).then(function(dbBook) {
@@ -24,11 +36,11 @@ module.exports = function(app) {
     });
   });
 
-  //See their "already read"
-  app.get("/api/mylibrary/completed ", function(res, req) {
+  //See books "already read" aka. completed
+  app.get("/api/mybooks ", function(req, res) {
     db.Book.findAll({
       where: {
-        hasBeenRead: true
+        hasRead: true
       },
       include: [db.User]
     }).then(function(dbBook) {
@@ -36,8 +48,32 @@ module.exports = function(app) {
     });
   });
 
-  //Delete a book
-  app.delete("/api/mylibrary/:id", function(res, req) {
+  //See a single book in my queue
+  app.get("/api/myqueue/:id", function(req, res) {
+    db.Book.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.User]
+    }).then(function(dbBook) {
+      res.json(dbBook);
+    });
+  });
+
+  //See a single book in my completed
+  app.get("/api/mybooks/:id", function(req, res) {
+    db.Book.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.User]
+    }).then(function(dbBook) {
+      res.json(dbBook);
+    });
+  });
+
+  //Delete a book in queue
+  app.delete("/api/myqueue/:id", function(req, res) {
     db.Book.destroy({
       where: {
         id: req.params.id
@@ -47,16 +83,38 @@ module.exports = function(app) {
     });
   });
 
-  //Add a book
-  app.post("/api/mylibrary/:id", function(res, req) {
+  //Delete a book in completed
+  app.delete("/api/mybooks/:id", function(req, res) {
+    db.Book.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbBook) {
+      res.json(dbBook);
+    });
+  });
+
+  //Add a book to library
+  app.post("/api/mybooks", function(req, res) {
     db.Book.create(req.body).then(function(dbBook) {
       res.json(dbBook);
     });
   });
 
-  //Update a book
-  app.put("/api/mylibrary/:id", function(res, req) {
-    db.Book.update(hasBeenRead, {
+  //Update a book in queue
+  app.put("/api/myqueue", function(req, res) {
+    db.Book.update(req.body.hasRead, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbBook) {
+      res.json(dbBook);
+    });
+  });
+
+  //Update a book in completed
+  app.put("/api/mybooks", function(req, res) {
+    db.Book.update(req.body.hasRead, {
       where: {
         id: req.body.id
       }
