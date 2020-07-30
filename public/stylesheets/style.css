@@ -6,7 +6,15 @@ form.login {
 .container-fluid{
   font-size: larger;
   margin-top: 10px;
-  font-weight: bolder;
+  font-weight: bolder;  
+}
+#logout{
+  color: white;
+  float: right;
+  position: absolute;
+  right: 20px;
+  padding: 20px;
+  margin: 20px;
 }
 a {
   text-decoration: none;
