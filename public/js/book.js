@@ -24,7 +24,7 @@ function serachByTitle(title, author) {
   }).then(() => {
    const bookSection = $("<div></div>").addclass("bookSection");
    bookSection.append($("#books"));
-   
+
   })
   .catch((err) => console.log(err));
 };
