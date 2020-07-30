@@ -2,3 +2,56 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+.container-fluid{
+  font-size: larger;
+  margin-top: 10px;
+  font-weight: bolder;  
+}
+#logout{
+  color: white;
+  float: right;
+  position: absolute;
+  right: 20px;
+  padding: 20px;
+  margin: 20px;
+}
+a {
+  text-decoration: none;
+}
+a:link, a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none; 
+}
+
+.btn{
+  display: inline-block;
+}
+
+.navbar{
+  justify-content: space-between;
+}
+
+
+\\ css for homepage
+
+.button-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+.myHeader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
