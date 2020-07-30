@@ -28,7 +28,7 @@ module.exports = function(app) {
   app.get("/api/myqueue", function(req, res) {
     db.Book.findAll({
       where: {
-        hasBeenRead: false
+        hasRead: false
       },
       include: [db.User]
     }).then(function(dbBook) {
@@ -40,7 +40,7 @@ module.exports = function(app) {
   app.get("/api/mybooks ", function(req, res) {
     db.Book.findAll({
       where: {
-        hasBeenRead: true
+        hasRead: true
       },
       include: [db.User]
     }).then(function(dbBook) {
@@ -50,9 +50,9 @@ module.exports = function(app) {
 
   //See a single book in my queue
   app.get("/api/myqueue/:id", function(req, res) {
-    db.Book.findAll({
+    db.Book.findOne({
       where: {
-        id: req.body.id
+        id: req.params.id
       },
       include: [db.User]
     }).then(function(dbBook) {
@@ -62,9 +62,9 @@ module.exports = function(app) {
 
   //See a single book in my completed
   app.get("/api/mybooks/:id", function(req, res) {
-    db.Book.findAll({
+    db.Book.findOne({
       where: {
-        id: req.body.id
+        id: req.params.id
       },
       include: [db.User]
     }).then(function(dbBook) {
@@ -102,8 +102,8 @@ module.exports = function(app) {
   });
 
   //Update a book in queue
-  app.put("/api/myqueue/:id", function(req, res) {
-    db.Book.update(hasBeenRead, {
+  app.put("/api/myqueue", function(req, res) {
+    db.Book.update(req.body.hasRead, {
       where: {
         id: req.body.id
       }
@@ -113,8 +113,8 @@ module.exports = function(app) {
   });
 
   //Update a book in completed
-  app.put("/api/mybooks/:id", function(req, res) {
-    db.Book.update(hasBeenRead, {
+  app.put("/api/mybooks", function(req, res) {
+    db.Book.update(req.body.hasRead, {
       where: {
         id: req.body.id
       }
