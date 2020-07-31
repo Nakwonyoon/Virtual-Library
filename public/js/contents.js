@@ -8,17 +8,18 @@ $(document).ready(function () {
   const MyQueueList = $("#myQueueList");
   const MyLibraryList = $("#myLibraryList");
 
+
   // Will search a book of title, author...etc and bring put the data into cardDeck function.
   function serachByTitle(searchInput) {
-    const key = "kfqIZ6fbDX5FN0hEnk62w";
-    let url = "https://www.goodreads.com/book/title.xml?key=" + key + "&title=" + searchInput;
-    $.ajax({
-      type: "GET",
-      url: url
-    }).then(function (response) {
-      console.log(url);
-      console.log(response)
-      $.get("/api/mybooks", function () {
+    // const key = "kfqIZ6fbDX5FN0hEnk62w";
+    // let url = "https://www.goodreads.com/book/title.xml?key=" + key + "&title=" + searchInput;
+    // $.ajax({
+    //   type: "GET",
+    //   url: url
+    // }).then(function (response) {
+    //   console.log(url);
+    //   console.log(response)
+      $.get("/goodreads", function () {
         const bookData = {
           title: response.title,
           author: response.author,
@@ -31,13 +32,15 @@ $(document).ready(function () {
         res.send(cardDeck(bookData));
       })
       .catch((err) => console.log(err));
-    })
-  };
+};
   
+//  need  call que  and create function by using carddeck.
+
+//  need  call lib  and create function by using carddeck.
+
   // creating cardDeck 
-  function cardDeck(bookData) {
+function cardDeck(bookData) {
     cardForm.append($("#books"));
-    
     const cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
@@ -49,7 +52,7 @@ $(document).ready(function () {
     `;
   }
   // Submit the input by click or enter
-  submit.on("keypress click", function (event) {
+submit.on("keypress click", function (event) {
     event.preventDefault();
     searchList.show()
     MyQueueList.hide()
@@ -58,16 +61,28 @@ $(document).ready(function () {
     serachByTitle(searchInput);
   });
   
-  $("#searchBtn").keypress(function (event) {
+$("#searchBtn").keypress(function (event) {
     if (event.which == 13)
     submit.click();
   });
-  myQueueBtn.on("click", () => {MyQueueList.show()})
-  myLibraryBtn.on("click", () => {MyLibraryList.show()})
+
+
+myQueueBtn.on("click", () => {
+   MyQueueList.show();
+  console.log("asd");
+});
+myLibraryBtn.on("click", () => {
+  MyLibraryList.show()
+  console.log("asd");
+});
   
+
+// Rendering Username on the homepage when user got logged in 
+  $.get("/api/user_data").then(function(data) {
+    $(".member-name").text(data.username);
+  });
   
-  
-  // need remove contents
+// need remove contents
   
   
 });
