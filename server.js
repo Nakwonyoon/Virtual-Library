@@ -2,6 +2,8 @@
 require("dotenv").config();
 var express = require("express");
 var session = require("express-session");
+var request = require("request");
+var parseString = require('xml2js').parseString;
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
