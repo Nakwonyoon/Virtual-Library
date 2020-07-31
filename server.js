@@ -42,3 +42,24 @@ db.sequelize.sync().then(function() {
     );
   });
 });
+
+
+request(`https://www.goodreads.com/author/list/1050?format=xml&key=kfqIZ6fbDX5FN0hEnk62w`, function (error, response, body) {
+    if (error) {
+      console.log("There was an Error.")
+    } else {
+      parseString(body, function (err, result) {
+        console.log(result.GoodreadsResponse.author[0].books[0].book[0].id[0]._)
+        // res.json({
+        //   book: result.GoodreadsResponse.author[0].books[0].work.map(
+        //     work => ({
+        //       goodreadsId: work.best_book[0].id[0]._,
+        //       title: work.best_book[0].title[0],
+        //       authors: work.best_book[0].author[0].name[0],
+        //       author_id: work.best_book[0].author[0].id[0],
+        //       covers: work.best_book[0].image_url[0]
+        //     }))
+        // })
+      })
+    }
+  })
