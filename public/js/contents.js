@@ -1,6 +1,7 @@
 $(document).ready(function() {
 const submit = $("#searchBtn"); 
-
+const myQueue = $("#myQ");
+const myLibrary = $("#myL")
 
 // Will search a book of title, author...etc and bring put the data into cardDeck function.
 function serachByTitle(searchInput) {
