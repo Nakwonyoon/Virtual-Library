@@ -2,6 +2,8 @@
 require("dotenv").config();
 var express = require("express");
 var session = require("express-session");
+var request = require("request");
+var parseString = require('xml2js').parseString;
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
@@ -39,3 +41,18 @@ db.sequelize.sync().then(function() {
     );
   });
 });
+
+//testing to see how to get the info from the xml request
+// request("https://www.goodreads.com/search.xml?key=kfqIZ6fbDX5FN0hEnk62w&q=Ender%27s+Game", function (error, response, body) {
+//       if (error) {
+//         console.log("There was an Error.")
+//       } else {
+//         // console.log(body);
+//         parseString(body, function (err, result) {
+          
+//             var data = result.GoodreadsResponse.search[0].results[0].work[0].best_book;
+//             console.log(data);
+//         })
+       
+//       }
+//     })

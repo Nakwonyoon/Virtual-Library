@@ -123,3 +123,27 @@ module.exports = function(app) {
     });
   });
 };
+
+ //Building the rout that talk to goodReads
+
+
+ app.get("/goodReads/", function (req, res) {
+  request("https://www.goodreads.com/search.xml?key=kfqIZ6fbDX5FN0hEnk62w&q=Ender%27s+Game", function (error, response, body) {
+    if (error) {
+      console.log("There was an Error.")
+    } else {
+      // console.log(body);
+      parseString(body, function (err, result) {
+        res.json({
+          books: result.GoodreadsResponse.search[0].results[0].work.map(
+            work => ({
+              goodreadsId: work.best_book[0].id[0]._,
+              title: work.best_book[0].title[0],
+              authors: work.best_book[0].author[0].name[0],
+              covers: work.best_book[0].image_url[0]
+            }))
+        })
+      })
+    }
+  })
+});
