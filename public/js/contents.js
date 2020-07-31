@@ -12,7 +12,7 @@ let url = "https://www.goodreads.com/book/title.xml?key="+ key +"&title=" + sear
   }).then(function(response){
     console.log(url);
     console.log(response)
-    $.get("/api/books", function () {
+    $.get("/api/mybooks", function () {
       const bookData = {
       title : response.title,
       author : response.author,
