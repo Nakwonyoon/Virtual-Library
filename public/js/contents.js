@@ -30,16 +30,15 @@ function serachByTitle(searchInput) {
 //  need  call lib  and create function by using carddeck.
 
   // creating cardDeck 
-function cardDeck(bookData) {
+function cardDeck(response) {
     cardForm.append($("#books"));
     const cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <h5 class="card-title">  ${bookData.title} </h5>
-    <h6 class="card-text"> ${bookData.author}  </h6>
-    <p> ${bookData.genre}</p>
-    <p> ${bookData.synopsis}</p>
-    <p> ${bookData.hasRead}</p>
+    <img src="${response.img}" alt="cover">
+    <h5 class="card-title">  ${response.title} </h5>
+    <h6 class="card-text"> ${response.author}  </h6>
+    
     `;
   }
   // Submit the input by click or enter
