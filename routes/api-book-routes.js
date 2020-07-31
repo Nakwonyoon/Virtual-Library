@@ -1,4 +1,7 @@
 var db = require("../models");
+var request = require("request");
+var parseString = require('xml2js').parseString;
+var axios = require('axios');
 
 module.exports = function(app) {
     //   var query = {};
@@ -122,17 +125,18 @@ module.exports = function(app) {
       res.json(dbBook);
     });
   });
-};
+
 
  //Building the rout that talk to goodReads
 
 
- app.get("/goodReads/", function (req, res) {
+ app.get("/goodReads", function (req, res) {
   request("https://www.goodreads.com/search.xml?key=kfqIZ6fbDX5FN0hEnk62w&q=Ender%27s+Game", function (error, response, body) {
     if (error) {
       console.log("There was an Error.")
     } else {
-      // console.log(body);
+        console.log(body);
+        console.log(`response= ${response}`);
       parseString(body, function (err, result) {
         res.json({
           books: result.GoodreadsResponse.search[0].results[0].work.map(
@@ -147,3 +151,5 @@ module.exports = function(app) {
     }
   })
 });
+
+};
