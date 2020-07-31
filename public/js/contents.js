@@ -28,7 +28,6 @@ let url = "https://www.goodreads.com/book/title.xml?key="+ key +"&title=" + sear
   })
 };
 
-
 // creating cardDeck 
 function cardDeck(bookData) {
   cardForm.append($("#books"));
@@ -42,7 +41,6 @@ function cardDeck(bookData) {
   <p> ${bookData.synopsis}</p>
   <p> ${bookData.hasRead}</p>
   `;
-  
 }
 // Submit the input by click or enter
 submit.on("keypress click", function(event){
