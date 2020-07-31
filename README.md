@@ -30,3 +30,5 @@ LOCALDB_URL=mysql://root:dbpassword@localhost:3306/Project2Dev
 [Project Requirements](https://github.com/the-Coding-Boot-Camp-at-UT/UTA-AUS-FSF-FT-06-2020-U-C/blob/master/01-Class-Content/15-Project-2/02-Homework/README.md
 
 [Deployment w/ Sequelize](https://github.com/the-Coding-Boot-Camp-at-UT/UTA-AUS-FSF-FT-06-2020-U-C/blob/master/01-Class-Content/14-Full-Stack/04-Supplemental/SequelizeHerokuDeploymentProcess.md)
+
+Test Test
