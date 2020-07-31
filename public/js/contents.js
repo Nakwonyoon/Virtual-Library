@@ -1,7 +1,12 @@
 $(document).ready(function() {
+// buttons
 const submit = $("#searchBtn"); 
-const myQueue = $("#myQ");
-const myLibrary = $("#myL")
+const myQueueBtn = $("#myQ");
+const myLibraryBtn = $("#myL");
+// list
+const searchList = $("#searchResult");
+
+
 
 // Will search a book of title, author...etc and bring put the data into cardDeck function.
 function serachByTitle(searchInput) {
