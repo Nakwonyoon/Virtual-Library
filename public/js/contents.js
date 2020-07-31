@@ -9,27 +9,18 @@ $(document).ready(function () {
   const MyLibraryList = $("#myLibraryList");
 
 
-  // Will search a book of title, author...etc and bring put the data into cardDeck function.
-  function serachByTitle(searchInput) {
-    // const key = "kfqIZ6fbDX5FN0hEnk62w";
-    // let url = "https://www.goodreads.com/book/title.xml?key=" + key + "&title=" + searchInput;
-    // $.ajax({
-    //   type: "GET",
-    //   url: url
-    // }).then(function (response) {
-    //   console.log(url);
-    //   console.log(response)
-      $.get("/goodreads", function () {
-        const bookData = {
-          title: response.title,
-          author: response.author,
-          publishDate: response.publishDate,
-          genre: response.genre,
-          synopsis: response.synopsis,
-          hasRead: response.hasRead
-        }
-      }).then((bookData) => {
-        res.send(cardDeck(bookData));
+function serachByTitle(searchInput) {
+  $.get("/goodReads", {
+    id : response.books.goodreadsId,
+    title : response.books.title,
+    author : response.books.authors,
+    covers : response.books.covers
+    }).then(() => {
+      for(var i = 0 ; i < response.books.length; i++){
+        const id = response.books.goodreadsId;
+        const title = response.books.title;
+      }
+        searchList.append(cardDeck(response))
       })
       .catch((err) => console.log(err));
 };
