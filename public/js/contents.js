@@ -11,9 +11,8 @@ $(document).ready(function () {
 
   // Will search a book of title, author...etc and bring put the data into cardDeck function.
   function serachByTitle(searchInput) {
-      $.get("/goodreads", function (response) {
-        console.log(response);
-
+      $.get("/goodReads", function (response) {
+        console.log(response)
       }).then((response) => {
         res.send(cardDeck(response));
       })
@@ -35,9 +34,10 @@ function cardDeck(response) {
     <h6 class="card-text"> ${response.author}  </h6>
     
     `;
+    return cardForm;
   }
   // Submit the input by click or enter
-submit.on("keypress click", function (event) {
+submit.on("submit", function (event) {
     event.preventDefault();
     searchList.show()
     MyQueueList.hide()
@@ -45,11 +45,7 @@ submit.on("keypress click", function (event) {
     const searchInput = $(".searchInput").val().trim();
     serachByTitle(searchInput);
   });
-  
-$("#searchBtn").keypress(function (event) {
-    if (event.which == 13)
-    submit.click();
-  });
+
 
 
 myQueueBtn.on("click", () => {
