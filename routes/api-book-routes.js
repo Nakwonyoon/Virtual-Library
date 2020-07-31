@@ -1,7 +1,6 @@
 var db = require("../models");
 var request = require("request");
 var parseString = require('xml2js').parseString;
-var axios = require('axios');
 
 module.exports = function(app) {
   //See books "to be read" aka. the queue
@@ -113,7 +112,7 @@ module.exports = function(app) {
       console.log("There was an Error.")
     } else {
         console.log(body);
-        console.log(`response= ${response}`);
+        console.log(`response= ${JSON.stringify(response)}`);
       parseString(body, function (err, result) {
         res.json({
           books: result.GoodreadsResponse.search[0].results[0].work.map(
