@@ -14,12 +14,17 @@
     <h1 style="text-align:center" id="myHeader"> Virtual Library </h1>
 
     <div class="button-box col-lg-12">
-        <a href="##########" class="btn btn-info bg-transparent btn-light" role="button">My Library</a>
-        <a href="##########" class="btn btn-info bg-transparent btn-light" role="button">My Queue</a>
+        <a href="##########" class="btn btn-info bg-transparent btn-light btn-lg text-white" role="button">My Library</a>
+        <a href="##########" class="btn btn-info bg-transparent btn-light btn-lg text-white" role="button">My Queue</a>
 </div>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
+      <a href="loginhtml" class="btn btn-info bg-transparent btn-light btn-sm text-white" role="button">Login</a>
+      <button bg-transparent btn-light btn-lg text-white onclick="document.getElementById('login.html').style.display='block'">Login</button> 
+        
+    
+    </button>
       <a class="navbar-brand" id="logout" href="/logout">
         Logout
       </a>
@@ -36,6 +41,13 @@
 
 
 <style>
+
+.button:focus
+{
+    font-size: 13px;
+    color:orange;
+}
+
     body {
       background-image: url('https://2020.ifla.org/wp-content/uploads/2020/03/Long-Room-Lower-Gallery-scaled.jpg');
       background-repeat: no-repeat;
