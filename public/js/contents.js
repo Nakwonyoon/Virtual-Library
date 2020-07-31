@@ -9,12 +9,18 @@ $(document).ready(function () {
   const MyLibraryList = $("#myLibraryList");
 
 
-  // Will search a book of title, author...etc and bring put the data into cardDeck function.
-  function serachByTitle(searchInput) {
-      $.get("/goodReads", function (response) {
-        console.log(response)
-      }).then((response) => {
-        res.send(cardDeck(response));
+function serachByTitle(searchInput) {
+  $.get("/goodReads", {
+    id : response.books.goodreadsId,
+    title : response.books.title,
+    author : response.books.authors,
+    covers : response.books.covers
+    }).then(() => {
+      for(var i = 0 ; i < response.books.length; i++){
+        const id = response.books.goodreadsId;
+        const title = response.books.title;
+      }
+        searchList.append(cardDeck(response))
       })
       .catch((err) => console.log(err));
 };
