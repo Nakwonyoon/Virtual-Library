@@ -37,7 +37,7 @@ $(document).ready(function () {
   //  need  call lib  and create function by using carddeck.
   function renderLibraryList() {
     $.get("/goodReads", {
-
+     
     }).then((response) => {
       MyLibraryList.append(cardDeck(response))
     })
