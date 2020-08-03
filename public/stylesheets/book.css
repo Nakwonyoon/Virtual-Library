@@ -41,3 +41,7 @@ a:link, a:visited {
     top: 30%;
     width: 400px;
 }
+.member-name{
+  color: white;
+  font-size: 24px;
+}
