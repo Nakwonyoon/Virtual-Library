@@ -121,7 +121,8 @@ module.exports = function (app) {
                 title: work.best_book[0].title[0],
                 authors: work.best_book[0].author[0].name[0],
                 author_id: work.best_book[0].author[0].id[0]._,
-                covers: work.best_book[0].image_url[0]
+                covers: work.best_book[0].image_url[0],
+                year: work.original_publication_year[0]._
               }))
           })
         })
