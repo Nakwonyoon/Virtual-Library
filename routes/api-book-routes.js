@@ -96,7 +96,7 @@ module.exports = function(app) {
       },
       {
         where: {
-          goodReadsId: req.params.id,
+          id: req.params.id,
         },
       }
     ).then(function(dbBook) {
@@ -112,7 +112,7 @@ module.exports = function(app) {
       },
       {
         where: {
-          goodReadsId: req.params.id,
+          id: req.params.id,
         },
       }
     ).then(function(dbBook) {

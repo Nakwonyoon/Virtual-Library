@@ -90,11 +90,11 @@ function serachByTitle(searchInput) {
   $("#myQueueList").on("click", $(".done"), function (event) {
     event.preventDefault();
     event.stopPropagation();
-    let grId = event.target.closest(".card-body").querySelector("span");
-    console.log(grId.innerHTML.trim());
+    let id = event.target.closest(".card-body").querySelector("span");
+    console.log(id.innerHTML.trim());
     $.ajax({
       method: "PUT",
-      url: "/api/myqueue/" + grId.innerHTML.trim(),
+      url: "/api/myqueue/" + id.innerHTML.trim(),
     })
       .then(function() {
         rendermyBookList();
