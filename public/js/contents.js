@@ -12,6 +12,11 @@
   myQueueList.hide();
   myBookList.hide();
 
+  var userId;
+
+  $.get("/api/user_data").then(function (data) {
+    userId = data.id;
+  });
 
 function serachByTitle(searchInput) {
     searchList.empty();
@@ -38,7 +43,7 @@ function serachByTitle(searchInput) {
     myBookList.empty();
     myQueueList.show();
     $(".resultHeader").text("My Queue");
-    $.get("/api/myqueue", function (data) {     
+    $.get("/api/myqueue/" + userId, function (data) {     
       for (var i = 0; i < data.length; i++) {
         cardDeckOfQList(data[i]);
       }
@@ -53,7 +58,7 @@ function serachByTitle(searchInput) {
     myQueueList.empty();
     myBookList.show();
     $(".resultHeader").text("My Library");
-    $.get("/api/mybooks", function (data) {
+    $.get("/api/mybooks/" + userId, function (data) {
       for (var i = 0; i < data.length; i++) {
         cardDeckOfBookList(data[i]);
       }
@@ -136,8 +141,7 @@ function serachByTitle(searchInput) {
     var cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <span hidden>${data.id}</span>
-    <span hidden class="goodReadsId">${data.goodReadsId}</span>
+    <span hidden class="goodReadsId">${data.goodreadsId}</span>
     <img class="cover" src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text">${data.authors}  </h6>
@@ -202,7 +206,6 @@ function serachByTitle(searchInput) {
 
   // Rendering Username on the homepage when user got logged in 
   $.get("/api/user_data").then(function (data) {
-    $(".member-name").text(data.username);
     userId = data.id;
   });
 });
