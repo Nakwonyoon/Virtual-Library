@@ -1,3 +1,15 @@
+body {
+  background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2053&q=80');
+  color: white;
+}
+
+button{
+  color: black;
+}
+
+.selection{
+  color: black;
+}
 .header{
     text-align: center;
   }
@@ -24,7 +36,24 @@ a:link, a:visited {
     padding: 15px 40px 15px 24px
 }
 
+.resultHeader{
+  display: block;
+  margin: 25px auto;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
 
+
+#bookBtns{
+  text-align: center;
+  margin: 20px auto;
+}
+
+#myQ, #myL {
+  margin: 20px;
+}
 
 #searchResult,
 #myQueueList,
@@ -33,6 +62,9 @@ a:link, a:visited {
     grid-template-columns: 100px 100px 100px;
     grid-gap: 200px;
     padding: 100px;
+    background-color: #f2f2f2;
+    border-radius: 25px;
+    margin: 20px auto;
 }
 .submenu{
   position: absolute;
