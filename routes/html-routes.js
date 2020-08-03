@@ -26,6 +26,7 @@ module.exports = function(app) {
   app.get("/books", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/book.html"));
   });
+
   app.get("/homepage", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/homepage.html"));
   });
@@ -39,4 +40,3 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/book.html"));
   });
 };
-
