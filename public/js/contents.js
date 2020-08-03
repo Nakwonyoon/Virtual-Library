@@ -12,6 +12,8 @@ $(document).ready(function () {
   var userId;
 
 function serachByTitle(searchInput) {
+    myQueueList.empty();
+    myBookList.empty();
     $.get("/goodReads/" + searchInput, function (response) {
       
       var { books } = response;
@@ -26,6 +28,7 @@ function serachByTitle(searchInput) {
   // call que  and create function by using carddeck.
   function renderQueueList() {
     searchList.empty();
+    myBookList.empty();
     $.get("/api/myqueue", function (data) {
       
       console.log(data);
@@ -36,10 +39,13 @@ function serachByTitle(searchInput) {
   }
   //call book  and create function by using carddeck.
   function rendermyBookList() {
+    searchList.empty();
+    myQueueList.empty();
     $.get("/api/mybooks", function (data) {
       
       for (var i = 0; i < data.length; i++) {
-        cardDeck(data[i]);
+
+        cardDeckOfBookList(data[i]);
       }
     }).catch((err) => console.log(err));
   }
@@ -133,10 +139,10 @@ function serachByTitle(searchInput) {
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
     <span hidden>${data.goodreadsId}</span>
-    <img class="cover" src="${data.covers}" alt="cover">
+    <img class="cover" src="${data.image}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
-    <h6 class="card-text"> ${data.authors}  </h6>
-    <h6 class="card-date"> ${data.year}  </h6>
+    <h6 class="card-text"> ${data.author}  </h6>
+    <h6 class="card-date"> ${data.publishDate}  </h6>
     <button class="remove">remove</button> 
     `;
     $("#myLibraryList").append(cardForm);
@@ -148,8 +154,6 @@ function serachByTitle(searchInput) {
     event.preventDefault();
     event.stopPropagation();
     searchList.show();
-    // MyQueueList.hide();
-    // MyBookList.hide();
     const searchInput = $(".searchInput").val().trim();
     console.log(searchInput);
     serachByTitle(searchInput);
@@ -158,15 +162,15 @@ function serachByTitle(searchInput) {
 
   myQueueBtn.on("click", (event) => {
     event.preventDefault();
-    MyQueueList.show();
-    MyBookList.hide();
+    myQueueList.show();
+    myBookList.hide();
     console.log("asd");
     renderQueueList();
   });
   myLibraryBtn.on("click", (event) => {
     event.preventDefault();
-    MyBookList.show();
-    MyQueueList.hide();
+    myBookList.show();
+    myQueueList.hide();
     console.log("asd");
     rendermyBookList();
   });
