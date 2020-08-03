@@ -97,16 +97,25 @@ function serachByTitle(searchInput) {
         rendermyBookList();
       });
   })
-  // delete from myQue
+  
+
   //  delete from mybook
   $(".deleteBook").on("click", function (event) {
     event.preventDefault();
     event.stopPropagation();
-    $.delete("/api/mybooks/" + id, function (data) {
-      rendermyBookList();
-    });
+    alert("delete clicked!");
+    myBookList.empty();
+    let grId = event.target.closest(".card-body").querySelector("span").innerHTML.trim();
+    console.log(grId);
+    $.ajax({
+      method: "DELETE",
+      url: "/api/mybooks/" + grId
+    })
+      .then(renderQueueList);
+
   })
-  
+
+  //  deleting from quelist
   $("#myQueueList").on("click", $(".deleteQue"),function (){
     event.preventDefault();
     event.stopPropagation();
