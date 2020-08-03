@@ -73,6 +73,16 @@ module.exports = function (app) {
     });
   });
 
+   //Add a book to Queue
+   app.post("/api/myqueue", function (req, res) {
+     console.log("Request Body: " + JSON.stringify(req.body));
+    // db.Book.create({
+    //   title
+    // }).then(function (dbBook) {
+    //   res.json(dbBook);
+    // });
+  });
+
   //Add a book to library
   app.post("/api/mybooks", function (req, res) {
     db.Book.create(req.body).then(function (dbBook) {
