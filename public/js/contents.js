@@ -112,10 +112,11 @@ function serachByTitle(searchInput) {
     event.stopPropagation();
     alert("delete clicked!");
     myQueueList.empty();
-    let id = $(this).data("id");
+    let grId = event.target.closest(".card-body").querySelector("span").innerHTML.trim();
+    console.log(grId);
     $.ajax({
       method: "DELETE",
-      url: "/api/myqueue/" + id
+      url: "/api/myqueue/" + grId
     })
       .then(renderQueueList);
 
