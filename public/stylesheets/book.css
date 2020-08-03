@@ -25,9 +25,11 @@ h1 {
 }
 
 .jumbotron a h1{
+  font-family: 'Playfair Display';
     display: block;
     color: white;
     padding: 5px;
+    font-size: 80px;
 }
 
 a:link, a:visited {
