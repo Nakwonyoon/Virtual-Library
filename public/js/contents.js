@@ -104,7 +104,7 @@ function serachByTitle(searchInput) {
 
   //  delete from mybook
 
-  $(".deleteBook").on("click", function (event) {
+  $("#myLibraryList").on("click", $(".remove"), function (event) {
     event.preventDefault();
     event.stopPropagation();
     alert("delete clicked!");
@@ -115,7 +115,7 @@ function serachByTitle(searchInput) {
       method: "DELETE",
       url: "/api/mybooks/" + grId
     })
-      .then(renderQueueList);
+      .then(rendermyBookList);
 
   })
 
