@@ -31,11 +31,11 @@ module.exports = function(app) {
 
   //When the user clicks on "My Library", it'll go to the MyLibrary page
   app.get("/mybooks", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/mybooks.html"));
+    res.sendFile(path.join(__dirname, "../public/book.html"));
   });
   //When the user clicks on "My Queue", it'll go to the MyQueue page
   app.get("/myqueue", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/myqueue.html"));
+    res.sendFile(path.join(__dirname, "../public/book.html"));
   });
 });
 }
