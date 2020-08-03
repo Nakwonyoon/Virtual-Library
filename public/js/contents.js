@@ -149,6 +149,8 @@ function serachByTitle(searchInput) {
     event.preventDefault();
     event.stopPropagation();
     searchList.show();
+    myQueueList.hide();
+    myBookList.hide();
     const searchInput = $(".searchInput").val().trim();
     console.log(searchInput);
     serachByTitle(searchInput);
