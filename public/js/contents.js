@@ -12,6 +12,8 @@ $(document).ready(function () {
   var userId;
 
 function serachByTitle(searchInput) {
+    myQueueList.empty();
+    myBookList.empty();
     $.get("/goodReads/" + searchInput, function (response) {
       
       var { books } = response;
@@ -26,6 +28,7 @@ function serachByTitle(searchInput) {
   // call que  and create function by using carddeck.
   function renderQueueList() {
     searchList.empty();
+    myBookList.empty();
     $.get("/api/myqueue", function (data) {
       
       console.log(data);
@@ -36,6 +39,8 @@ function serachByTitle(searchInput) {
   }
   //call book  and create function by using carddeck.
   function rendermyBookList() {
+    searchList.empty();
+    myQueueList.empty();
     $.get("/api/mybooks", function (data) {
       
       for (var i = 0; i < data.length; i++) {
