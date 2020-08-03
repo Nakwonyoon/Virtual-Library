@@ -16,14 +16,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: true
     },
-    genre: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    synopsis: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
+    // synopsis: {
+    //   type: DataTypes.TEXT,
+    //   allowNull: false
+    // },
     image: {
       type: DataTypes.STRING,
       allowNull: false
