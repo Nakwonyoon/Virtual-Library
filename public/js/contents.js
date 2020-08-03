@@ -187,6 +187,7 @@ function serachByTitle(searchInput) {
     const searchInput = $(".searchInput").val().trim();
     console.log(searchInput);
     serachByTitle(searchInput);
+    $(".searchInput").val('');
   });
 
 
