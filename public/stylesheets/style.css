@@ -8,14 +8,6 @@ form.login {
   margin-top: 10px;
   font-weight: bolder;  
 }
-#logout{
-  color: white;
-  float: right;
-  position: absolute;
-  right: 20px;
-  padding: 20px;
-  margin: 20px;
-}
 a {
   text-decoration: none;
 }
@@ -35,7 +27,12 @@ a:hover {
 .navbar{
   justify-content: space-between;
 }
-
+.loginBtn,
+.signupBtn {
+  color: white !important;
+  font-size: 24px;
+  font-weight: bold;
+}
 
 \\ css for homepage
 
