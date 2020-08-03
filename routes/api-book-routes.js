@@ -67,7 +67,7 @@ module.exports = function(app) {
   app.delete("/api/mybooks/:id", function(req, res) {
     db.Book.destroy({
       where: {
-        id: req.params.id,
+        goodReadsId: req.params.id,
       },
     }).then(function(dbBook) {
       res.json(dbBook);
