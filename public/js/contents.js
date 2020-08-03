@@ -11,12 +11,13 @@ $(document).ready(function () {
 
 function serachByTitle(searchInput) {
     console.log(searchInput);
-    $.get("/goodReads", function (response) {
+    $.get("/goodReads/" + searchInput, function (response) {
       let searchList = [];
-      let { data } = response.books;
-      console.loçg(data);
-      for (var i = 0; i < data.length; i++) {
-        searchList.push(cardDeck(data[i]));
+      console.log(response.books[0]);
+      var { books } = response;
+      console.log(books);
+      for (var i = 0; i < books.length; i++) {
+        searchList.push(cardDeck(books[i]));
       }
     }).catch((err) => console.log(err));
   };
@@ -70,41 +71,42 @@ function serachByTitle(searchInput) {
   })
   // creating cardDeck 
   function cardDeck(data) {
-    cardForm.append($("#books"));
-    const cardForm = ` 
+
+    var cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <img src="${data.img}" alt="cover">
+    <img src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.author}  </h6>
     <button class="addQue">add</button>
     <button class="deleteBook">delete</button> 
     `;
-    return cardForm;
+    searchList.append($(cardForm));
   }
   function cardDeckOfQList(data) {
-    cardForm.append($("#books"));
     const cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <img src="${data.img}" alt="cover">
+    <img src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.author}  </h6>
     <button class="done">Done</button> 
     <button class="deleteQue">delete</button> 
     `;
-    return cardForm;
+    searchList.append($(cardForm));
   }
 
 
   // Submit the input by click or enter
-  submit.on("submit", function (event) {
+  submit.on("click", function(event) {
     event.preventDefault();
-    console.log("asd");
+    event.stopPropagation();
+    alert("");
     searchList.show();
     // MyQueueList.hide();
     // MyBookList.hide();
     const searchInput = $(".searchInput").val().trim();
+    console.log(searchInput);
     serachByTitle(searchInput);
   });
 
