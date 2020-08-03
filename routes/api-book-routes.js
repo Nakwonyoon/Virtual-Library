@@ -4,10 +4,11 @@ var parseString = require("xml2js").parseString;
 
 module.exports = function(app) {
   //See books "to be read" aka. the queue
-  app.get("/api/myqueue", function(req, res) {
+  app.get("/api/myqueue/:id", function(req, res) {
     db.Book.findAll({
       where: {
         hasRead: false,
+        UserId: req.params.id
       },
       include: [db.User],
     }).then(function(dbBook) {
@@ -17,10 +18,11 @@ module.exports = function(app) {
   });
 
   //See books "already read" aka. completed
-  app.get("/api/mybooks", function(req, res) {
+  app.get("/api/mybooks/:id", function(req, res) {
     db.Book.findAll({
       where: {
         hasRead: true,
+        UserId: req.params.id
       },
       include: [db.User],
     }).then(function(dbBook) {
@@ -32,7 +34,7 @@ module.exports = function(app) {
   app.get("/api/myqueue/:id", function(req, res) {
     db.Book.findOne({
       where: {
-        id: req.params.id,
+        UserId: req.params.id,
       },
       include: [db.User],
     }).then(function(dbBook) {
@@ -44,7 +46,7 @@ module.exports = function(app) {
   app.get("/api/mybooks/:id", function(req, res) {
     db.Book.findOne({
       where: {
-        id: req.params.id,
+        UserId: req.params.id,
       },
       include: [db.User],
     }).then(function(dbBook) {
