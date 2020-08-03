@@ -9,13 +9,12 @@ $(document).ready(function () {
   const MyQueueList = $("#myQueueList");
   const MyBookList = $("#myLibraryList");
 
-
-  function serachByTitle(searchInput) {
-    $.get("/goodReads/" + searchInput, function (response) {
-      console.log(response.books);
+function serachByTitle(searchInput) {
+    console.log(searchInput);
+    $.get("/goodReads", function (response) {
       let searchList = [];
       let { data } = response.books;
-      console.log(data);
+      console.loçg(data);
       for (var i = 0; i < data.length; i++) {
         searchList.push(cardDeck(data[i]));
       }
@@ -29,7 +28,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         MyQueueList.push(cardDeckOfQList(data[i]));
       }
-    })
+    }).catch((err) => console.log(err));
   }
   //call book  and create function by using carddeck.
   function rendermyBookList() {
@@ -38,7 +37,7 @@ $(document).ready(function () {
       for (var i = 0; i < data.length; i++) {
         MyBookList.push(cardDeck(data[i]));
       }
-    })
+    }).catch((err) => console.log(err));
   }
   // add to the Quelist
   $(".addQue").on("click", function (event) {
@@ -102,24 +101,26 @@ $(document).ready(function () {
   submit.on("submit", function (event) {
     event.preventDefault();
     console.log("asd");
-    searchList.show()
-    MyQueueList.hide()
-    MyBookList.hide()
+    searchList.show();
+    // MyQueueList.hide();
+    // MyBookList.hide();
     const searchInput = $(".searchInput").val().trim();
     console.log(searchInput);
     serachByTitle(searchInput);
   });
 
 
-  myQueueBtn.on("click", () => {
+  myQueueBtn.on("click", (event) => {
+    event.preventDefault();
     MyQueueList.show();
-    MyBookList.hid();
+    MyBookList.hide();
     console.log("asd");
     renderQueueList();
   });
-  myLibraryBtn.on("click", () => {
+  myLibraryBtn.on("click", (event) => {
+    event.preventDefault();
     MyBookList.show();
-    MyQueueList.hid();
+    MyQueueList.hide();
     console.log("asd");
     rendermyBookList();
   });
