@@ -56,7 +56,7 @@ module.exports = function(app) {
   app.delete("/api/myqueue/:id", function(req, res) {
     db.Book.destroy({
       where: {
-        goodReadsId: req.params.id,
+        id: req.params.id,
       },
     }).then(function(dbBook) {
       res.json(dbBook);
@@ -67,7 +67,7 @@ module.exports = function(app) {
   app.delete("/api/mybooks/:id", function(req, res) {
     db.Book.destroy({
       where: {
-        goodReadsId: req.params.id,
+        id: req.params.id,
       },
     }).then(function(dbBook) {
       res.json(dbBook);
@@ -129,8 +129,8 @@ module.exports = function(app) {
         if (error) {
           console.log("There was an Error.");
         } else {
-          console.log(body);
-          console.log(`response= ${JSON.stringify(response)}`);
+          // console.log(body);
+          // console.log(`response= ${JSON.stringify(response)}`);
           parseString(body, function(err, result) {
             res.json({
               books: result.GoodreadsResponse.search[0].results[0].work.map(

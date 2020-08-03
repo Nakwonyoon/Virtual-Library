@@ -17,6 +17,7 @@ $(document).ready(function () {
   var userId;
 
 function serachByTitle(searchInput) {
+    searchList.empty();
     myQueueList.hide();
     myQueueList.empty();
     myBookList.hide();
@@ -33,6 +34,7 @@ function serachByTitle(searchInput) {
 
   // call que  and create function by using carddeck.
   function renderQueueList() {
+    myQueueList.empty();
     searchList.hide();
     searchList.empty();
     myBookList.hide();
@@ -47,6 +49,7 @@ function serachByTitle(searchInput) {
   }
   //call book  and create function by using carddeck.
   function rendermyBookList() {
+    myBookList.empty();
     searchList.hide();
     searchList.empty();
     myQueueList.hide();
@@ -67,7 +70,7 @@ function serachByTitle(searchInput) {
     let newAuthor = event.target.closest(".card-body").querySelector(".card-text");
     let newDate = event.target.closest(".card-body").querySelector(".card-date");
     let newImage = event.target.closest(".card-body").querySelector(".cover").getAttribute("src");
-    let grId = event.target.closest(".card-body").querySelector("span");
+    let grId = event.target.closest(".card-body").querySelector(".goodReadsId");
     var newBook = {
       goodReadsId: grId.innerHTML.trim(),
       title: newTitle.innerHTML.trim(),
@@ -100,6 +103,7 @@ function serachByTitle(searchInput) {
   
 
   //  delete from mybook
+
   $(".deleteBook").on("click", function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -131,11 +135,14 @@ function serachByTitle(searchInput) {
 
   });
 
+
   function cardDeck(data) {
+    console.log(data);
     var cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <span hidden>${data.goodreadsId}</span>
+    <span hidden>${data.id}</span>
+    <span hidden class="goodReadsId">${data.goodReadsId}</span>
     <img class="cover" src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text">${data.authors}  </h6>
@@ -148,7 +155,7 @@ function serachByTitle(searchInput) {
     const cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <span hidden>${data.goodReadsId}</span>
+    <span hidden>${data.id}</span>
     <img class="cover" src="${data.image}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.author}  </h6>
@@ -162,7 +169,7 @@ function serachByTitle(searchInput) {
     const cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <span hidden>${data.goodReadsId}</span>
+    <span hidden>${data.id}</span>
     <img class="cover" src="${data.image}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.author}  </h6>
