@@ -11,7 +11,8 @@ $(document).ready(function () {
 
 
   function serachByTitle(searchInput) {
-    $.get("/goodReads", function (data) {
+    $.get("/goodReads/" + searchInput, function (response) {
+      console.log(response.books);
       let searchList = [];
       let { data } = response.books;
       console.log(data);
@@ -105,6 +106,7 @@ $(document).ready(function () {
     MyQueueList.hide()
     MyBookList.hide()
     const searchInput = $(".searchInput").val().trim();
+    console.log(searchInput);
     serachByTitle(searchInput);
   });
 
