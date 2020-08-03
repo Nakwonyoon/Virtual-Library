@@ -11,6 +11,7 @@ module.exports = function (app) {
       },
       include: [db.User]
     }).then(function (dbBook) {
+      console.log(dbBook);
       res.json(dbBook);
     });
   });
@@ -69,6 +70,13 @@ module.exports = function (app) {
         id: req.params.id
       }
     }).then(function (dbBook) {
+      res.json(dbBook);
+    });
+  });
+
+   //Add a book to Queue
+   app.post("/api/myqueue", function (req, res) {
+    db.Book.create(req.body).then(function (dbBook) {
       res.json(dbBook);
     });
   });
