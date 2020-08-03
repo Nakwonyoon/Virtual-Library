@@ -10,11 +10,12 @@
 </head>
 
 <body>
-  <div class="jumbotron">
-    <div class="container-fluid">
-      <h1 class="header"><a href="/homepage"> My library</a></h1>
-    </div>
-  </div>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <a href="/homepage"><h1 class="text-white">Virtual Library</h1></a>
+          
+        </div>
+      </div>
   <!-- Contents -->
   <div class="container">
     <!-- Search -->
@@ -30,10 +31,18 @@
             Search
           </button>
         </div>
+        <div id="bookBtns">
+            <button id="myQ"class="btn btn-light btn-lg">
+                My queue
+              </button>
+              <button id="myL" class="btn btn-light btn-lg">
+                My library
+              </button>
+        </div>
       </form>
 
 
-      <aside class="col-md-4 submenu">
+      <!-- <aside class="col-md-4 submenu">
         <ul class="list-group ">
           <li class="list-group-item active">Lorem ipsum</li>
           <li class="list-group-item">
@@ -47,27 +56,25 @@
             </button>
           </li>
         </ul>
-      </aside>
+      </aside> -->
     </div>
   </div>
   <!-- search result -->
   <div class="container">
-    <div class="row">
-      <div id="searchResult">
-
+    <h1 class="resultHeader"></h1>
+    <div class="row">  
+      <div id="searchResult">      
       </div>
     </div>
     <!-- suggest random book  gonna use carousel-->
     <!-- myque -->
-    <div class="row" id="myQueueList">
-      <div id="myQueueList">
-
+    <div class="row">
+      <div id="myQueueList">      
       </div>
     </div>
     <!-- library -->
-    <div class="row" id="myLibraryList">
+    <div class="row">
       <div id="myLibraryList">
-
       </div>
     </div>
   </div>

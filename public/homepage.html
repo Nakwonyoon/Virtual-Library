@@ -19,46 +19,46 @@
         
 </div>
 <div class="row">
-  <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <div class="navbar-header">      
-        <button>  
-          <a class="navbar-brand"  href="/logout">
-            Logout</a>
-          </button>
-        </div>
+      <div id="welcome">      
+        <button href="/logout" id="logoutBtn" class="btn btn-info bg-transparent btn-light btn-lg text-white">
+          Logout
+        </button>      
       </div>
-    </nav>
-    
-    <div class="row">
-      <div class="col-md-4">
-        <h2> welcome, <span class="member-name"></span></h2>
-      </div>
+        <h2 id="welcome">Welcome, <span class="member-name"></span></h2>
     </div>
-
+</div>
 <style>
 
-.button:focus
-{
+.button:focus{
     font-size: 13px;
     color:orange;
 }
 
-    body {
-      background-image: url('https://2020.ifla.org/wp-content/uploads/2020/03/Long-Room-Lower-Gallery-scaled.jpg');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-    }
+body {
+    background-image: url('https://2020.ifla.org/wp-content/uploads/2020/03/Long-Room-Lower-Gallery-scaled.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
 
-    .btn {
-color: red;
-outline: red;
+.btn {
+    color: red;
+    outline: red;
+}
+#logoutBtn {
+    margin: 30px;
+    display: inline-block;
+}
 
+#welcome {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+    
 
-    }
-
-    .button-box {
+.button-box {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -80,9 +80,18 @@ h2 {
 }
 
     
-    </style>
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+  $.get("/api/user_data").then(function (data) {
+    console.log(data);
+    $(".member-name").text(data.username);
+    userId = data.id;
+  });
 
 
-
+</script>
 </body>
 </html>
