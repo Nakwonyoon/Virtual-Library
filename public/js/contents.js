@@ -39,6 +39,7 @@ function serachByTitle(searchInput) {
     $.get("/api/mybooks", function (data) {
       
       for (var i = 0; i < data.length; i++) {
+
         cardDeckOfBookList(data[i]);
       }
     }).catch((err) => console.log(err));
