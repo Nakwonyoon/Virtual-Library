@@ -39,7 +39,8 @@ $(document).ready(function() {
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    console.log(err);
+    $("#alert .msg").text("Email already exists. Please Login.");
     $("#alert").fadeIn(500);
   }
 });
