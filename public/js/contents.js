@@ -1,6 +1,4 @@
-  
-$(document).ready(function () {
-
+ $(document).ready(function () {
   // buttons
   const submit = $("#searchBtn");
   const myQueueBtn = $("#myQ");
@@ -9,12 +7,11 @@ $(document).ready(function () {
   const searchList = $("#searchResult");
   const myQueueList = $("#myQueueList");
   const myBookList = $("#myLibraryList");
-
+  // hiding
   searchList.hide();
   myQueueList.hide();
   myBookList.hide();
 
-  var userId;
 
 function serachByTitle(searchInput) {
     searchList.empty();
@@ -63,7 +60,7 @@ function serachByTitle(searchInput) {
     }).catch((err) => console.log(err));
   }
   // add to the Quelist
-  $("#searchResult").on("click", $(".addQue"), function (event) {
+  $("#searchResult").on("click", ".addQue", function (event) {
     event.preventDefault();
     event.stopPropagation();
     let newTitle = event.target.closest(".card-body").querySelector(".card-title");
@@ -87,7 +84,7 @@ function serachByTitle(searchInput) {
   })
 
 //  add to the bookList
-  $("#myQueueList").on("click", $(".done"), function (event) {
+  $("#myQueueList").on("click", ".done", function (event) {
     event.preventDefault();
     event.stopPropagation();
     let id = event.target.closest(".card-body").querySelector("span");
@@ -104,10 +101,9 @@ function serachByTitle(searchInput) {
 
   //  delete from mybook
 
-  $(".deleteBook").on("click", function (event) {
+  $("#myLibraryList").on("click", ".remove", function (event) {
     event.preventDefault();
     event.stopPropagation();
-    alert("delete clicked!");
     myBookList.empty();
     let grId = event.target.closest(".card-body").querySelector("span").innerHTML.trim();
     console.log(grId);
@@ -115,15 +111,14 @@ function serachByTitle(searchInput) {
       method: "DELETE",
       url: "/api/mybooks/" + grId
     })
-      .then(renderQueueList);
+      .then(rendermyBookList);
 
   })
 
   //  deleting from quelist
-  $("#myQueueList").on("click", $(".deleteQue"),function (){
+  $("#myQueueList").on("click", ".deleteQue",function (){
     event.preventDefault();
     event.stopPropagation();
-    alert("delete clicked!");
     myQueueList.empty();
     let grId = event.target.closest(".card-body").querySelector("span").innerHTML.trim();
     console.log(grId);
@@ -210,8 +205,4 @@ function serachByTitle(searchInput) {
     $(".member-name").text(data.username);
     userId = data.id;
   });
-
-  // need remove contents
-
-
 });
