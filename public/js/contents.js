@@ -133,10 +133,10 @@ function serachByTitle(searchInput) {
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
     <span hidden>${data.goodreadsId}</span>
-    <img class="cover" src="${data.covers}" alt="cover">
+    <img class="cover" src="${data.image}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
-    <h6 class="card-text"> ${data.authors}  </h6>
-    <h6 class="card-date"> ${data.year}  </h6>
+    <h6 class="card-text"> ${data.author}  </h6>
+    <h6 class="card-date"> ${data.publishDate}  </h6>
     <button class="remove">remove</button> 
     `;
     $("#myLibraryList").append(cardForm);
