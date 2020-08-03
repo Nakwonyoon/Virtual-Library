@@ -17,7 +17,7 @@ function serachByTitle(searchInput) {
       var { books } = response;
       console.log(books);
       for (var i = 0; i < books.length; i++) {
-        searchList.push(cardDeck(books[i]));
+        searchList.push(cardDeckSearch(books[i]));
       }
     }).catch((err) => console.log(err));
   };
@@ -36,24 +36,38 @@ function serachByTitle(searchInput) {
     $.get("/api/mybooks", function (data) {
       let MyBookList = [];
       for (var i = 0; i < data.length; i++) {
-        MyBookList.push(cardDeck(data[i]));
+        MyBookList.push(cardDeckOfBookList(data[i]));
       }
     }).catch((err) => console.log(err));
   }
   // add to the Quelist
   $(".addQue").on("click", function (event) {
     event.preventDefault();
-    $.post("/api/myqueue").then(function (data) {
-      return renderQueueList;
-    })
+    alert("asd")
+    var newQue = {
+      covers: data.covers,
+      title: data.title,
+      authors: data.authors
+      }
+      $.post("/api/myqueue", newQue)
+      .then(function(newQue){
+        alert("adding");
+        console.log(newQue);
+    });
   })
 //  add to the bookList
   $(".done").on("click", function (event) {
     event.preventDefault();
-    $.post("/api/mybooks").then(function (data) {
-      return rendermyBookList;
+    var newQue = {
+    covers: covers,
+    title: title,
+    authors: authors
+    }
+    $.post("/api/mybooks", newQue)
+    .then(function(data){
+      console.log(data);
     })
-  })
+  });
 
   // delete from myQue
   $(".deleteQue").on("click", function (event) {
@@ -70,16 +84,15 @@ function serachByTitle(searchInput) {
     });
   })
   // creating cardDeck 
-  function cardDeck(data) {
+  function cardDeckSearch(data) {
 
     var cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
     <img src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
-    <h6 class="card-text"> ${data.author}  </h6>
+    <h6 class="card-text"> ${data.authors}  </h6>
     <button class="addQue">add</button>
-    <button class="deleteBook">delete</button> 
     `;
     searchList.append($(cardForm));
   }
@@ -89,11 +102,22 @@ function serachByTitle(searchInput) {
     <div class="card-body">
     <img src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
-    <h6 class="card-text"> ${data.author}  </h6>
+    <h6 class="card-text"> ${data.authors}  </h6>
     <button class="done">Done</button> 
     <button class="deleteQue">delete</button> 
     `;
-    searchList.append($(cardForm));
+    MyQueueList.append($(cardForm));
+  }
+  function cardDeckOfBookList(data) {
+    const cardForm = ` 
+    <div style="width: 24rem;" class="card results-card">
+    <div class="card-body">
+    <img src="${data.covers}" alt="cover">
+    <h5 class="card-title">  ${data.title} </h5>
+    <h6 class="card-text"> ${data.authors}  </h6>
+    <button class="deleteBook">delete</button> 
+    `;
+    MyBookList.append($(cardForm));
   }
 
 
@@ -113,6 +137,7 @@ function serachByTitle(searchInput) {
 
   myQueueBtn.on("click", (event) => {
     event.preventDefault();
+    event.stopPropagation();
     MyQueueList.show();
     MyBookList.hide();
     console.log("asd");
@@ -120,6 +145,7 @@ function serachByTitle(searchInput) {
   });
   myLibraryBtn.on("click", (event) => {
     event.preventDefault();
+    event.stopPropagation();
     MyBookList.show();
     MyQueueList.hide();
     console.log("asd");

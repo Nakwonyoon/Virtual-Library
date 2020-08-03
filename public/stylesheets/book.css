@@ -29,3 +29,7 @@ a:link, a:visited {
 option {
     font-weight: bolder;
 }
+
+.card-result{
+  display: grid inline-grid !important;
+}
