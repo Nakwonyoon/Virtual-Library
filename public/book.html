@@ -1,78 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css"
-    />
-    <link href="stylesheets/book.css" rel="stylesheet" />
-    <title>Welcom to my library</title>
-  </head>
 
-  <body>
-    <div class="jumbotron">
-      <div class="container-fluid">
-        <h1 class="header"><a href="/homepage"> My library</a></h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" />
+  <link href="stylesheets/book.css" rel="stylesheet" />
+  <title>Welcom to my library</title>
+</head>
+
+<body>
+  <div class="jumbotron">
+    <div class="container-fluid">
+      <h1 class="header"><a href="/homepage"> My library</a></h1>
+    </div>
+  </div>
+  <!-- Contents -->
+  <div class="container">
+    <!-- Search -->
+    <div class="row">
+      <form class="form-inline">
+        <div class="search-component text-center">
+          <select class="selection ">
+            <option class="selection title">Title</option>
+            <option class="selection author">Author</option>
+          </select>
+          <input class="form-control searchInput" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-success" id="searchBtn" type="submit">
+            Search
+          </button>
+        </div>
+      </form>
+
+
+      <aside class="col-md-4 submenu">
+        <ul class="list-group ">
+          <li class="list-group-item active">Lorem ipsum</li>
+          <li class="list-group-item">
+            <button id="myQ">
+              My queue
+            </button>
+          </li>
+          <li class="list-group-item">
+            <button id="myL">
+              My library
+            </button>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+  <!-- search result -->
+  <div class="container">
+    <div class="row">
+      <div id="searchResult">
+
       </div>
     </div>
-    <!-- Contents -->
-    <div class="container">
-      <!-- Search -->
-      <div class="row">
-        <form class="form-inline">
-          <div class="search-component text-center">
-            <select class="selection ">
-              <option class="selection title">Title</option>
-              <option class="selection author">Author</option>
-            </select>
-            <input
-              class="form-control searchInput"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              class="btn btn-outline-success"
-              id="searchBtn"
-              type="submit"
-            >
-              Search
-            </button>
-          </div>
-        </form>
-  
-        
-        <aside class="col-md-4 submenu">
-            <ul class="list-group ">
-                <li class="list-group-item active">Lorem ipsum</li>
-                <li class="list-group-item">
-                    <button id="myQ">
-                        My queue
-                    </button>
-                </li>
-                <li class="list-group-item">
-                    <button id="myL">
-                        My library
-                    </button>
-                </li>
-            </ul>
-        </aside>
+    <!-- suggest random book  gonna use carousel-->
+    <!-- myque -->
+    <div class="row" id="myQueueList">
+      <div id="myQueueList">
+
+      </div>
     </div>
- </div>
-      <!-- search result -->
-    <div class="container">
-      <div class="row" id="searchResult">
+    <!-- library -->
+    <div class="row" id="myLibraryList">
+      <div id="myLibraryList">
+
+      </div>
     </div>
-        <!-- suggest random book  gonna use carousel-->
-      <!-- myque -->
-      <div class="row" id="myQueueList"></div>
-      <!-- library -->
-      <div class="row" id="myLibraryList"></div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="./js/contents.js"></script>
-  </body>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="./js/contents.js"></script>
+</body>
+
 </html>
