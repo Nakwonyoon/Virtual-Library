@@ -41,22 +41,27 @@ function serachByTitle(searchInput) {
     }).catch((err) => console.log(err));
   }
   // add to the Quelist
-  $("#searchResult").on("click", $("button.addQue"), function (event) {
+  $("#searchResult").on("click", $("button.addQue"), async function (event) {
     event.preventDefault();
     event.stopPropagation();
-    console.log("add to Queue clicked!")
-    console.log(this);
-    console.log(event.target);
-    console.log(event.target.closest(".card-body").querySelector(".card-title"));
+    let id;
+    await $.get("/api/user_data").then(function(data) {
+      id = data.id;
+    });
     let newTitle = event.target.closest(".card-body").querySelector(".card-title");
     let newAuthor = event.target.closest(".card-body").querySelector(".card-text");
+    let newDate = event.target.closest(".card-body").querySelector(".card-date");
+    let newImage = event.target.closest(".card-body").querySelector(".cover").getAttribute("src");
     var newBook = {
-      title: newTitle.innerHTML,
-      author: newAuthor.innerHTML
+      title: newTitle.innerHTML.trim(),
+      author: newAuthor.innerHTML.trim(),
+      publishDate: newDate.innerHTML.trim(),
+      image: newImage,
+      UserId: id
     }
     console.log(newBook)
-    $.post("/api/myqueue").then(function (data) {
-      // console.log(data);
+    $.post("/api/myqueue", newBook, function (data) {
+      console.log(data);
       renderQueueList();
     });
   })
@@ -92,9 +97,10 @@ function serachByTitle(searchInput) {
     var cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <img src="${data.covers}" alt="cover">
+    <img class="cover" src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
-    <h6 class="card-text"> ${data.authors}  </h6>
+    <h6 class="card-text">${data.authors}  </h6>
+    <h6 class="card-date">${data.year}  </h6>
     <button class="addQue">add</button>
     <button class="deleteBook">delete</button> 
     `;
@@ -104,9 +110,10 @@ function serachByTitle(searchInput) {
     const cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <img src="${data.covers}" alt="cover">
+    <img class="cover" src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.authors}  </h6>
+    <h6 class="card-date"> ${data.year}  </h6>
     <button class="done">Done</button> 
     <button class="deleteQue">delete</button> 
     `;
