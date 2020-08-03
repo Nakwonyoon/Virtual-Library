@@ -87,17 +87,20 @@ function serachByTitle(searchInput) {
   function cardDeckSearch(data) {
 
     var cardForm = ` 
+  
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
     <img src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.authors}  </h6>
     <button class="addQue">add</button>
+
     `;
     searchList.append($(cardForm));
   }
   function cardDeckOfQList(data) {
     const cardForm = ` 
+  
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
     <img src="${data.covers}" alt="cover">
@@ -105,17 +108,20 @@ function serachByTitle(searchInput) {
     <h6 class="card-text"> ${data.authors}  </h6>
     <button class="done">Done</button> 
     <button class="deleteQue">delete</button> 
+  
     `;
     MyQueueList.append($(cardForm));
   }
   function cardDeckOfBookList(data) {
     const cardForm = ` 
+    
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
     <img src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.authors}  </h6>
     <button class="deleteBook">delete</button> 
+
     `;
     MyBookList.append($(cardForm));
   }
