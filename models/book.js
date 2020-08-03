@@ -1,5 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
   var Book = sequelize.define("Book", {
+    goodReadsId: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -26,8 +30,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     hasRead: {
       type: DataTypes.BOOLEAN,
-      default: false,
-      allowNull: false
+      defaultValue: false,
+
     }
   });
 
