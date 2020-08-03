@@ -100,30 +100,41 @@ function serachByTitle(searchInput) {
         rendermyBookList();
       });
   })
-  // delete from myQue
-  //  delete from mybook
-  // $(".deleteBook").on("click", function (event) {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   $.delete("/api/mybooks/" + id, function (data) {
-  //     rendermyBookList();
-  //   });
-  // })
   
-  // $("#myQueueList").on("click", $(".deleteQue"),function (){
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   alert("delete clicked!");
-  //   myQueueList.empty();
-  //   let id = event.target.closest(".card-body").querySelector("span").innerHTML.trim();
-  //   console.log(id);
-  //   $.ajax({
-  //     method: "DELETE",
-  //     url: "/api/myqueue/" + id
-  //   })
-  //     .then(renderQueueList);
 
-  // });
+  //  delete from mybook
+
+  $(".deleteBook").on("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    alert("delete clicked!");
+    myBookList.empty();
+    let grId = event.target.closest(".card-body").querySelector("span").innerHTML.trim();
+    console.log(grId);
+    $.ajax({
+      method: "DELETE",
+      url: "/api/mybooks/" + grId
+    })
+      .then(renderQueueList);
+
+  })
+
+  //  deleting from quelist
+  $("#myQueueList").on("click", $(".deleteQue"),function (){
+    event.preventDefault();
+    event.stopPropagation();
+    alert("delete clicked!");
+    myQueueList.empty();
+    let grId = event.target.closest(".card-body").querySelector("span").innerHTML.trim();
+    console.log(grId);
+    $.ajax({
+      method: "DELETE",
+      url: "/api/myqueue/" + grId
+    })
+      .then(renderQueueList);
+
+  });
+
 
   function cardDeck(data) {
     console.log(data);
