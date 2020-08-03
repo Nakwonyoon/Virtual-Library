@@ -121,7 +121,8 @@ module.exports = function (app) {
                 title: work.best_book[0].title[0],
                 authors: work.best_book[0].author[0].name[0],
                 author_id: work.best_book[0].author[0].id[0]._,
-                covers: work.best_book[0].image_url[0]
+                covers: work.best_book[0].image_url[0],
+                year: work.original_publication_year[0]._
               }))
           })
         })
@@ -143,7 +144,12 @@ module.exports = function (app) {
                   title: result.GoodreadsResponse.author[0].books[0].book[i].title,
                   name: result.GoodreadsResponse.author[0].books[0].book[i].authors[0].author[0].name,
                   pub_date: result.GoodreadsResponse.author[0].books[0].book[i].publication_year,
-                  description: result.GoodreadsResponse.author[0].books[0].book[i].description
+                  description: result.GoodreadsResponse.author[0].books[0].book[i].description,
+                  img: result.GoodreadsResponse.author[0].books[0].book[i].image_url,
+                  rating: result.GoodreadsResponse.author[0].books[0].book[i].average_rating,
+                  publisher: result.GoodreadsResponse.author[0].books[0].book[i].publisher,
+                  page_count: result.GoodreadsResponse.author[0].books[0].book[i].num_pages,
+                  format: result.GoodreadsResponse.author[0].books[0].book[i].format
                 }
 
               )
