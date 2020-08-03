@@ -41,15 +41,30 @@ function serachByTitle(searchInput) {
     }).catch((err) => console.log(err));
   }
   // add to the Quelist
-  $(".addQue").on("click", function (event) {
+  $("#searchResult").on("click", $("button.addQue"), function (event) {
     event.preventDefault();
+    event.stopPropagation();
+    console.log("add to Queue clicked!")
+    console.log(this);
+    console.log(event.target);
+    console.log(event.target.closest(".card-body").querySelector(".card-title"));
+    let newTitle = event.target.closest(".card-body").querySelector(".card-title");
+    let newAuthor = event.target.closest(".card-body").querySelector(".card-text");
+    var newBook = {
+      title: newTitle.innerHTML,
+      author: newAuthor.innerHTML
+    }
+    console.log(newBook)
     $.post("/api/myqueue").then(function (data) {
-      return renderQueueList;
-    })
+      // console.log(data);
+      renderQueueList();
+    });
   })
+
 //  add to the bookList
   $(".done").on("click", function (event) {
     event.preventDefault();
+    event.stopPropagation();
     $.post("/api/mybooks").then(function (data) {
       return rendermyBookList;
     })
@@ -58,6 +73,7 @@ function serachByTitle(searchInput) {
   // delete from myQue
   $(".deleteQue").on("click", function (event) {
     event.preventDefault();
+    event.stopPropagation();
     $.delete("/api/myqueue/:id").then(function (data) {
       return renderQueueList
     });
@@ -65,6 +81,7 @@ function serachByTitle(searchInput) {
 //  delete from mybook
   $(".deleteBook").on("click", function (event) {
     event.preventDefault();
+    event.stopPropagation();
     $.delete("/api/mybooks/:id").then(function (data) {
       return rendermyBookList;
     });
@@ -77,7 +94,7 @@ function serachByTitle(searchInput) {
     <div class="card-body">
     <img src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
-    <h6 class="card-text"> ${data.author}  </h6>
+    <h6 class="card-text"> ${data.authors}  </h6>
     <button class="addQue">add</button>
     <button class="deleteBook">delete</button> 
     `;
@@ -89,7 +106,7 @@ function serachByTitle(searchInput) {
     <div class="card-body">
     <img src="${data.covers}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
-    <h6 class="card-text"> ${data.author}  </h6>
+    <h6 class="card-text"> ${data.authors}  </h6>
     <button class="done">Done</button> 
     <button class="deleteQue">delete</button> 
     `;
@@ -101,7 +118,6 @@ function serachByTitle(searchInput) {
   submit.on("click", function(event) {
     event.preventDefault();
     event.stopPropagation();
-    alert("");
     searchList.show();
     // MyQueueList.hide();
     // MyBookList.hide();
