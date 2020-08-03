@@ -9,16 +9,21 @@ $(document).ready(function () {
   const myQueueList = $("#myQueueList");
   const myBookList = $("#myLibraryList");
 
+  searchList.hide();
+  myQueueList.hide();
+  myBookList.hide();
+
   var userId;
 
 function serachByTitle(searchInput) {
+    myQueueList.hide();
     myQueueList.empty();
+    myBookList.hide();
     myBookList.empty();
-    $.get("/goodReads/" + searchInput, function (response) {
-      
+    searchList.show();
+    $(".resultHeader").text("Search Results");
+    $.get("/goodReads/" + searchInput, function (response) {     
       var { books } = response;
-      console.log(books);
-      console.log(books[0]);
       for (var i = 0; i < books.length; i++) {
         cardDeck(books[i]);
       }
@@ -27,11 +32,13 @@ function serachByTitle(searchInput) {
 
   // call que  and create function by using carddeck.
   function renderQueueList() {
+    searchList.hide();
     searchList.empty();
+    myBookList.hide();
     myBookList.empty();
-    $.get("/api/myqueue", function (data) {
-      
-      console.log(data);
+    myQueueList.show();
+    $(".resultHeader").text("My Queue");
+    $.get("/api/myqueue", function (data) {     
       for (var i = 0; i < data.length; i++) {
         cardDeckOfQList(data[i]);
       }
@@ -39,12 +46,14 @@ function serachByTitle(searchInput) {
   }
   //call book  and create function by using carddeck.
   function rendermyBookList() {
+    searchList.hide();
     searchList.empty();
+    myQueueList.hide();
     myQueueList.empty();
+    myBookList.show();
+    $(".resultHeader").text("My Library");
     $.get("/api/mybooks", function (data) {
-      
       for (var i = 0; i < data.length; i++) {
-
         cardDeckOfBookList(data[i]);
       }
     }).catch((err) => console.log(err));
@@ -53,7 +62,6 @@ function serachByTitle(searchInput) {
   $("#searchResult").on("click", $(".addQue"), function (event) {
     event.preventDefault();
     event.stopPropagation();
-    alert("create clicked!");
     let newTitle = event.target.closest(".card-body").querySelector(".card-title");
     let newAuthor = event.target.closest(".card-body").querySelector(".card-text");
     let newDate = event.target.closest(".card-body").querySelector(".card-date");
@@ -75,12 +83,18 @@ function serachByTitle(searchInput) {
   })
 
 //  add to the bookList
-  $(".done").on("click", function (event) {
+  $("#myQueueList").on("click", $(".done"), function (event) {
     event.preventDefault();
     event.stopPropagation();
-    $.post("/api/mybooks").then(function (data) {
-      return rendermyBookList;
+    let grId = event.target.closest(".card-body").querySelector("span");
+    console.log(grId.innerHTML.trim());
+    $.ajax({
+      method: "PUT",
+      url: "/api/myqueue/" + grId.innerHTML.trim(),
     })
+      .then(function() {
+        rendermyBookList();
+      });
   })
 
   // delete from myQue
@@ -98,13 +112,13 @@ function serachByTitle(searchInput) {
   //   });
   
 //  delete from mybook
-  $(".deleteBook").on("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    $.delete("/api/mybooks/" + id, function (data) {
-      rendermyBookList();
-    });
-  })
+  // $(".deleteBook").on("click", function (event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   $.delete("/api/mybooks/" + id, function (data) {
+  //     rendermyBookList();
+  //   });
+  // })
   // creating cardDeck 
   function cardDeck(data) {
     var cardForm = ` 
@@ -120,11 +134,10 @@ function serachByTitle(searchInput) {
     searchList.append(cardForm);
   }
   function cardDeckOfQList(data) {
-    console.log(data);
     const cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <span hidden>${data.goodreadsId}</span>
+    <span hidden>${data.goodReadsId}</span>
     <img class="cover" src="${data.image}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.author}  </h6>
@@ -138,7 +151,7 @@ function serachByTitle(searchInput) {
     const cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
-    <span hidden>${data.goodreadsId}</span>
+    <span hidden>${data.goodReadsId}</span>
     <img class="cover" src="${data.image}" alt="cover">
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.author}  </h6>
@@ -164,14 +177,12 @@ function serachByTitle(searchInput) {
     event.preventDefault();
     myQueueList.show();
     myBookList.hide();
-    console.log("asd");
     renderQueueList();
   });
   myLibraryBtn.on("click", (event) => {
     event.preventDefault();
     myBookList.show();
     myQueueList.hide();
-    console.log("asd");
     rendermyBookList();
   });
 
