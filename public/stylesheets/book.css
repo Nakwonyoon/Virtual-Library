@@ -23,9 +23,25 @@ a:link, a:visited {
 .by{
     padding: 15px 40px 15px 24px
 }
-.selection{
-    padding: 7px 12px;
+
+
+
+#searchResult,
+#myQueueList,
+#myLibraryList {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap: 200px;
+    padding: 100px;
 }
-option {
-    font-weight: bolder;
+.submenu{
+  position: absolute;
+    left: 0;
+    top: 10;
+    top: 30%;
+    width: 400px;
+}
+.member-name{
+  color: white;
+  font-size: 24px;
 }

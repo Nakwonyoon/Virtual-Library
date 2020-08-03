@@ -39,7 +39,8 @@ function serachByTitle(searchInput) {
     $.get("/api/mybooks", function (data) {
       
       for (var i = 0; i < data.length; i++) {
-        cardDeck(data[i]);
+
+        cardDeckOfBookList(data[i]);
       }
     }).catch((err) => console.log(err));
   }
@@ -148,8 +149,6 @@ function serachByTitle(searchInput) {
     event.preventDefault();
     event.stopPropagation();
     searchList.show();
-    // MyQueueList.hide();
-    // MyBookList.hide();
     const searchInput = $(".searchInput").val().trim();
     console.log(searchInput);
     serachByTitle(searchInput);
@@ -158,15 +157,15 @@ function serachByTitle(searchInput) {
 
   myQueueBtn.on("click", (event) => {
     event.preventDefault();
-    MyQueueList.show();
-    MyBookList.hide();
+    myQueueList.show();
+    myBookList.hide();
     console.log("asd");
     renderQueueList();
   });
   myLibraryBtn.on("click", (event) => {
     event.preventDefault();
-    MyBookList.show();
-    MyQueueList.hide();
+    myBookList.show();
+    myQueueList.hide();
     console.log("asd");
     rendermyBookList();
   });
