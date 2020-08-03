@@ -8,7 +8,6 @@ $(document).ready(function () {
   const searchList = $("#searchResult");
   const myQueueList = $("#myQueueList");
   const myBookList = $("#myLibraryList");
-
   var userId;
 
 function serachByTitle(searchInput) {
@@ -17,8 +16,6 @@ function serachByTitle(searchInput) {
     $.get("/goodReads/" + searchInput, function (response) {
       
       var { books } = response;
-      console.log(books);
-      console.log(books[0]);
       for (var i = 0; i < books.length; i++) {
         cardDeck(books[i]);
       }
@@ -27,11 +24,13 @@ function serachByTitle(searchInput) {
 
   // call que  and create function by using carddeck.
   function renderQueueList() {
+    // myQueueList.empty();
     searchList.empty();
     myBookList.empty();
+   
     $.get("/api/myqueue", function (data) {
       
-      console.log(data);
+  
       for (var i = 0; i < data.length; i++) {
         cardDeckOfQList(data[i]);
       }
@@ -41,6 +40,7 @@ function serachByTitle(searchInput) {
   function rendermyBookList() {
     searchList.empty();
     myQueueList.empty();
+
     $.get("/api/mybooks", function (data) {
       
       for (var i = 0; i < data.length; i++) {
@@ -51,6 +51,7 @@ function serachByTitle(searchInput) {
   }
   // add to the Quelist
   $("#searchResult").on("click", $(".addQue"), function (event) {
+    console.log(data)
     event.preventDefault();
     event.stopPropagation();
     alert("create clicked!");
@@ -67,37 +68,22 @@ function serachByTitle(searchInput) {
       image: newImage,
       UserId: userId
     }
-    console.log(newBook)
     $.post("/api/myqueue", newBook, function (data) {
-      console.log(data);
       renderQueueList();
     });
   })
 
 //  add to the bookList
-  $(".done").on("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    $.post("/api/mybooks").then(function (data) {
-      return rendermyBookList;
-    })
-  })
-
-  // delete from myQue
-  // $("#searchResult").on("click", $(".deleteQue"), async function (event) {
+  // $(".done").on("click", function (event) {
   //   event.preventDefault();
   //   event.stopPropagation();
-  //   alert("delete clicked!");
-  //   let id = event.target.closest(".card-body").querySelector("span").innerHTML;
-  //   $.ajax({
-  //     method: "DELETE",
-  //     url: "/api/myqueue/" + id
-  //   }).then(function(data){
-  //     renderQueueList();
-  //     });
-  //   });
-  
-//  delete from mybook
+  //   $.post("/api/mybooks").then(function (data) {
+  //     return rendermyBookList;
+  //   })
+  // })
+
+  // delete from myQue
+  //  delete from mybook
   $(".deleteBook").on("click", function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -105,6 +91,20 @@ function serachByTitle(searchInput) {
       rendermyBookList();
     });
   })
+  $("#myQueueList").on("click", $(".deleteQue"),function (){
+    event.preventDefault();
+    event.stopPropagation();
+    alert("delete clicked!");
+    myQueueList.empty();
+    let id = $(this).data("id");
+    $.ajax({
+      method: "DELETE",
+      url: "/api/myqueue/" + id
+    })
+      .then(renderQueueList);
+
+  });
+
   // creating cardDeck 
   function cardDeck(data) {
     var cardForm = ` 
@@ -120,7 +120,8 @@ function serachByTitle(searchInput) {
     searchList.append(cardForm);
   }
   function cardDeckOfQList(data) {
-    console.log(data);
+    console.log(data.id);
+
     const cardForm = ` 
     <div style="width: 24rem;" class="card results-card">
     <div class="card-body">
@@ -129,8 +130,7 @@ function serachByTitle(searchInput) {
     <h5 class="card-title">  ${data.title} </h5>
     <h6 class="card-text"> ${data.author}  </h6>
     <h6 class="card-date"> ${data.publishDate}  </h6>
-    <button class="done">Done</button> 
-    <button class="deleteQue">delete</button> 
+    <button class="deleteQue">Done</button> 
     `;
     $("#myQueueList").append(cardForm);
   }
@@ -164,14 +164,12 @@ function serachByTitle(searchInput) {
     event.preventDefault();
     myQueueList.show();
     myBookList.hide();
-    console.log("asd");
     renderQueueList();
   });
   myLibraryBtn.on("click", (event) => {
     event.preventDefault();
     myBookList.show();
     myQueueList.hide();
-    console.log("asd");
     rendermyBookList();
   });
 
